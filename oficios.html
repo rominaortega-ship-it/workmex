@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkMex - Oficios</title>
+  <link rel="stylesheet" href="oficios.css">
+  <script src="https://kit.fontawesome.com/a2b1e6e8b4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">WORK<span>MEX</span></div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <div class="menu-dropdown">
+      <a href="empleo.html" class="dropbtn">Servicios</a>
+      <div class="dropdown-content">
+        <a href="empleo.html">Empleo</a>
+        <a href="oficios.html">Oficio</a>
+      </div>
+    </div>
+      <a href="capacitacion.html">Capacitación</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="publicidad.html">Publicidad</a>
+      <a href="comentarios.html">Comentarios</a>
+      <a href="colaboradores.html">Colaboradores</a>
+
+    </nav>
+    <div class="icons">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <i class="fa-regular fa-user"></i>
+    </div>
+  </header>
+
+  <!-- SECCIÓN DE OFICIOS -->
+  <section class="empleos">
+    <h2>Empleos de Oficio</h2>
+    <div class="grid">
+      <div class="empleo">
+        <h3>Plomero General</h3>
+        <p><strong>Ubicación:</strong> Puebla, Pue.</p>
+        <p><strong>Turno:</strong> Matutino</p>
+        <button>Postularme</button>
+      </div>
+
+      <div class="empleo">
+        <h3>Ayudante de Plomero</h3>
+        <p><strong>Ubicación:</strong> León, Guanajuato</p>
+        <p><strong>Turno:</strong> Vespertino</p>
+        <button>Postularme</button>
+      </div>
+
+      <div class="empleo">
+        <h3>Técnico en Plomería Industrial</h3>
+        <p><strong>Ubicación:</strong> Veracruz, Ver.</p>
+        <p><strong>Turno:</strong> Completo</p>
+        <button>Postularme</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE FORMULARIO -->
+  <div id="modal-form" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Postulación de Empleo</h2>
+      <form id="form-postulacion">
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <label for="puesto">Puesto al que te postulas:</label>
+        <input type="text" id="puesto" name="puesto" readonly>
+
+        <label for="mensaje">Mensaje o experiencia:</label>
+        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+
+        <button type="submit">Enviar Postulación</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const botones = document.querySelectorAll('.empleo button');
+    const modal = document.getElementById('modal-form');
+    const closeBtn = document.querySelector('.close');
+    const inputPuesto = document.getElementById('puesto');
+
+    botones.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const empleo = e.target.parentElement.querySelector('h3').textContent;
+        inputPuesto.value = empleo;
+        modal.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', (e) => {
+      if (e.target == modal) modal.style.display = 'none';
+    });
+
+    document.getElementById('form-postulacion').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('¡Tu postulación ha sido enviada correctamente!');
+      modal.style.display = 'none';
+      e.target.reset();
+    });
+  </script>
+
+</body>
+</html>

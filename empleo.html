@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMPLEOS</title>
+    <link rel="stylesheet" href="empleo.css">
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+  <header>
+    <div class="logo">WORK<span>MEX</span></div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <div class="menu-dropdown">
+      <a href="empleo.html" class="dropbtn">Servicios</a>
+      <div class="dropdown-content">
+        <a href="empleo.html">Empleo</a>
+        <a href="oficios.html">Oficio</a>
+      </div>
+    </div>
+      <a href="capacitacion.html">Capacitación</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="publicidad.html">Publicidad</a>
+      <a href="comentarios.html">Comentarios</a>
+      <a href="colaboradores.html">Colaboradores</a>
+
+    </nav>
+    <div class="icons">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <i class="fa-regular fa-user"></i>
+    </div>
+  </header>
+
+
+
+    <!-- SECCIÓN DE EMPLEOS -->
+  <section class="empleos">
+    <h2>Ofertas de Empleo</h2>
+    <div class="grid">
+      <div class="empleo">
+        <h3>Operador de Producción</h3>
+        <p><strong>Ubicación:</strong> Tehuacán, Puebla</p>
+        <p><strong>Turno:</strong> Nocturno</p>
+        <button>Postularme</button>
+      </div>
+
+      <div class="empleo">
+        <h3>Asistente de Plomería</h3>
+        <p><strong>Ubicación:</strong> Xalapa, Veracruz</p>
+        <p><strong>Turno:</strong> Matutino</p>
+
+        <button>Postularme</button>
+      </div>
+
+      <div class="empleo">
+        <h3>Costurera Industrial</h3>
+        <p><strong>Ubicación:</strong> Huatulco, Oaxaca</p>
+        <p><strong>Turno:</strong> Vespertino</p>
+        <button>Postularme</button>
+      </div>
+    </div>
+  </section>
+
+<!-- MODAL DE FORMULARIO -->
+  <div id="modal-form" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Postulación de Empleo</h2>
+      <form id="form-postulacion">
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <label for="puesto">Puesto al que te postulas:</label>
+        <input type="text" id="puesto" name="puesto" readonly>
+
+        <label for="mensaje">Mensaje o experiencia:</label>
+        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+
+        <button type="submit">Enviar Postulación</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+<script>
+// Modal de postulación
+    const botones = document.querySelectorAll('.empleo button');
+    const modal = document.getElementById('modal-form');
+    const closeBtn = document.querySelector('.close');
+    const inputPuesto = document.getElementById('puesto');
+
+    botones.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const empleo = e.target.parentElement.querySelector('h3').textContent;
+        inputPuesto.value = empleo;
+        modal.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', (e) => {
+      if (e.target == modal) modal.style.display = 'none';
+    });
+
+    document.getElementById('form-postulacion').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('¡Tu postulación ha sido enviada correctamente!');
+      modal.style.display = 'none';
+      e.target.reset();
+    });
+
+
+    const chatButton = document.getElementById('chatButton');
+    const chatWindow = document.getElementById('chatWindow');
+    const sendBtn = document.getElementById('sendBtn');
+    const userInput = document.getElementById('userInput');
+    const chatMessages = document.getElementById('chatMessages');
+</script>
+
+</html>
+

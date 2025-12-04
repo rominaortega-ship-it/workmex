@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkMex - el puente entre tu experiencia y el empleo</title>
+  <link rel="stylesheet" href="estyles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">WORK<span>MEX</span></div>
+    <nav>
+      <a href="index.html">Inicio</a>
+       <div class="menu-dropdown">
+      <a href="empleo.html" class="dropbtn">Servicios</a>
+      <div class="dropdown-content">
+        <a href="empleo.html">Empleo</a>
+        <a href="oficios.html">Oficio</a>
+      </div>
+    </div>
+      <a href="capacitacion.html">Capacitación</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+       <a href="publicidad.html">Publicidad</a>
+       <a href="comentarios.html">Comentarios</a>
+       <a href="colaboradores.html">Colaboradores</a>
+    </nav>
+    <div class="icons">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <i class="fa-regular fa-user"></i>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>WORKMEX</h1>
+      <p class="slogan">el puente entre tu experiencia y el empleo</p>
+      <p>Conectamos talento con oportunidades en los sectores de maquila, plomería y más. Encuentra tu futuro laboral hoy.</p>
+      
+    </div>
+  </section>
+
+ 
+
+  
+
+  
+  <!-- Botón flotante del chat -->
+  <button id="chatButton">💬</button>
+
+  <!-- Ventana del chat -->
+  <div id="chatWindow">
+    <div id="chatHeader">Asistente Virtual 🤖</div>
+    <div id="chatMessages">
+      <div class="message bot">¡Hola! 👋 Andrea. ¿En qué puedo ayudarte hoy?</div>
+    </div>
+    <div id="chatInput">
+      <input type="text" id="userInput" placeholder="Escribe tu mensaje..." />
+      <button id="sendBtn">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    // Selección de elementos
+    const chatButton = document.getElementById('chatButton');
+    const chatWindow = document.getElementById('chatWindow');
+    const sendBtn = document.getElementById('sendBtn');
+    const userInput = document.getElementById('userInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    // Mostrar u ocultar chat
+    chatButton.onclick = () => {
+      if (chatWindow.style.display === 'flex') {
+        chatWindow.style.display = 'none';
+      } else {
+        chatWindow.style.display = 'flex';
+        chatWindow.scrollTop = chatMessages.scrollHeight;
+      }
+    };
+
+    // Enviar mensaje al presionar botón o Enter
+    sendBtn.onclick = sendMessage;
+    userInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (message === "") return;
+
+      // Mensaje del usuario
+      const userMsg = document.createElement('div');
+      userMsg.classList.add('message', 'user');
+      userMsg.textContent = message;
+      chatMessages.appendChild(userMsg);
+      userInput.value = '';
+
+      // Respuesta simulada del bot
+      const botMsg = document.createElement('div');
+      botMsg.classList.add('message', 'bot');
+
+      if (message.toLowerCase().includes("hola")) {
+        botMsg.textContent = "¡Hola! 😊 ¿Cómo estás?";
+      } else if (message.toLowerCase().includes("empleos")) {
+        botMsg.textContent = "Puedes ver nuestras vacantes en la sección de Empleos. 🚀";
+      } else if (message.toLowerCase().includes("gracias")) {
+        botMsg.textContent = "¡Con gusto! ¿Necesitas algo más?";
+      } else {
+        botMsg.textContent = "Puedo ayudarte con información sobre empleos o contacto. 😊";
+      }
+
+      setTimeout(() => {
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 500);
+    }
+  </script>
+
+
+  
+</body>
+</html>
